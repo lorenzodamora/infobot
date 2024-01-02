@@ -1,0 +1,9 @@
+
+*.pyc
+*.session
+workEnv/clientParameters.py
+testEnv/clientParameters.py
+*.log
+*.csv
+database/linkClick.txt
+*.pkl
