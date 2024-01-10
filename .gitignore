@@ -1,9 +1,17 @@
 
+# python cache
 *.pyc
+
+# telegram session
 *.session
-workEnv/clientParameters.py
-testEnv/clientParameters.py
+*.session-journal
+
+# token e api
+*/myClientParameters.py
+*/clientParameters.py
+
+# database utenti
+database/linkClick.txt
 *.log
 *.csv
-database/linkClick.txt
 *.pkl

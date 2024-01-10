@@ -1,12 +1,13 @@
 from pyrogram import Client, filters as f
 from pyrogram.types import ReplyKeyboardMarkup as Rkm, InlineKeyboardMarkup as Ikm, InlineKeyboardButton as Ikb
-from .log import async_log as alog
+from .log import complete_log as clog
+from asyncio import create_task as ct
 
 
 # lang_check
-def lcheck(u_id):
+async def lcheck(u_id):
     from .lang import get_ulang as glang
-    if glang(u_id) == "I":
+    if await glang(u_id) == "I":
         return True
     return False
 
@@ -26,6 +27,7 @@ async def set_lang(_, msg):
             BotCommand("help", "Chiama aiuto")
         ])
         '''
+        await lang_start(None, msg)
 
     else:
         await msg.reply_text(f"eng text : r0 {name}!\nwarning\nEnglish is not implemented yet")
@@ -37,13 +39,13 @@ async def set_lang(_, msg):
         ])
         '''
 
-    await lang_start(None, msg)
-    alog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}")
+    # await lang_start(None, msg)
+    _ = ct(clog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))
 
 
 async def lang_start(_, msg):
     await msg.reply(
-        text="Questi bottoni ti aiuteranno a navigare tra le mie funzionalità" if lcheck(msg.from_user.id)
+        text="Questi bottoni ti aiuteranno a navigare tra le mie funzionalità" if await lcheck(msg.from_user.id)
         else "eng text : r1",
         reply_markup=Rkm(
             keyboard=[
@@ -55,10 +57,10 @@ async def lang_start(_, msg):
                     "🎦 Info & Video ℹ️",  # B2
                 ],
                 [
-                    "Set Language 🌐" if lcheck(msg.from_user.id) else "Imposta Lingua 🌐",  # C1
+                    "Set Language 🌐" if await lcheck(msg.from_user.id) else "Imposta Lingua 🌐",  # C1
                 ],
                 [
-                    "Contatto 👤" if lcheck(msg.from_user.id) else "Contact 👤",  # D1
+                    "Contatto 👤" if await lcheck(msg.from_user.id) else "Contact 👤",  # D1
                 ]
             ],
             one_time_keyboard=False,
@@ -71,7 +73,7 @@ async def lang_start(_, msg):
 async def form(_, msg):
     u_id = msg.from_user.id
     text = (f"Compila questo form se vuoi essere contattato per capire come iniziare la tua attività.\n"
-            "\nSaremmo lieti di poter parlare insieme a te!") if lcheck(u_id) \
+            "\nSaremmo lieti di poter parlare insieme a te!") if await lcheck(u_id) \
         else f"eng text : r2"
     await msg.reply(
         text=text,
@@ -82,7 +84,7 @@ async def form(_, msg):
         ]),
         disable_web_page_preview=True,  # Disabilita l'anteprima del sito web se presente
     )
-    alog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}")
+    _ = ct(clog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))
 
 
 @Client.on_message(f.regex("Contatto 👤") | f.regex("Contact 👤"), group=0)
@@ -90,7 +92,7 @@ async def contact(_, msg):
     u_id = msg.from_user.id
     tme = "https://t.me/Ill_Magnus"
     text = (f"Per qualsiasi problema o domanda:\nEcco [il mio contatto telegram]({tme})\n"
-            f"\nAltri contatti:") if lcheck(u_id) \
+            f"\nAltri contatti:") if await lcheck(u_id) \
         else f"eng text : r3"
     from pyrogram.enums import ParseMode as Pm
     await msg.reply(
@@ -108,7 +110,7 @@ async def contact(_, msg):
         ]),
         disable_web_page_preview=True,  # Disabilita l'anteprima del sito web se presente
     )
-    alog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}")
+    _ = ct(clog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))
 
 
 @Client.on_message(f.regex("FAQ"), group=0)
@@ -117,32 +119,32 @@ async def contact(_, msg):
 async def faq(_, msg):
     u_id = msg.from_user.id
     await msg.reply(
-        text="Non sono esattamente un motore di ricerca ma eccoti alcuni risultati:" if lcheck(u_id)
+        text="Non sono esattamente un motore di ricerca ma eccoti alcuni risultati:" if await lcheck(u_id)
         else "eng text : r4",
         reply_markup=Rkm(
             keyboard=[
                 [
-                    "Perché mi chiede il numero di telefono?" if lcheck(u_id) else "eng text : r5",  # A1
+                    "Perché mi chiede il numero di telefono?" if await lcheck(u_id) else "eng text : r5",  # A1
                 ],
                 [
-                    "Dati sensibili" if lcheck(u_id) else "eng text : r6",  # B1
+                    "Dati sensibili" if await lcheck(u_id) else "eng text : r6",  # B1
                 ],
                 [
                     "🔙 Menù",  # C1
-                    "Contatto 👤" if lcheck(u_id) else "Contact 👤",  # C2
+                    "Contatto 👤" if await lcheck(u_id) else "Contact 👤",  # C2
                 ],
             ],
             one_time_keyboard=False,
             resize_keyboard=True
         )
     )
-    alog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}")
+    _ = ct(clog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))
 
 
 @Client.on_message(f.regex("🔙 Menù"), group=0)
 async def menu(_, msg):
     await lang_start(None, msg)
-    alog(msg.from_user.id, "testo", f"id:{msg.id}\n\ttext:{msg.text}")
+    _ = ct(clog(msg.from_user.id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))
 
 
 @Client.on_message(
@@ -164,17 +166,17 @@ async def datisensibili(_, msg):
               "La tua privacy è importante per noi.\n\nAvevo in mente un discorso, perciò l'ho scritto:\n"
               " Per rendersi la vita come un film bisogna rischiare come in un film, perciò: hai paura di dare il "
               "numero di telefono? Meglio! significa che non sei stupido, avventato o poco sveglio.\n Ma solo chi si "
-              "mette in gioco avrà i risultati che cerca nella vita. La scelta è tua.") if lcheck(u_id)
+              "mette in gioco avrà i risultati che cerca nella vita. La scelta è tua.") if await lcheck(u_id)
         else "eng text : r7"
     )
-    alog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}")
+    _ = ct(clog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))
 
 
 @Client.on_message(f.regex("🎦 Info & Video ℹ️"), group=0)
 async def info(_, msg):
     u_id = msg.from_user.id
     await msg.reply(
-        text="è proprio come youtube!!" if lcheck(u_id)
+        text="è proprio come youtube!!" if await lcheck(u_id)
         else "eng text : r8",
         reply_markup=Rkm(
             keyboard=[
@@ -185,21 +187,21 @@ async def info(_, msg):
                     "WorkShop",  # B1
                 ],
                 [
-                    "Altre Info" if lcheck(u_id) else "Other Info",  # C1
+                    "Altre Info" if await lcheck(u_id) else "Other Info",  # C1
                 ],
                 [
-                    "Quanto vale tutto questo?" if lcheck(u_id) else "eng text : r5",  # D1
+                    "Quanto vale tutto questo?" if await lcheck(u_id) else "eng text : r5",  # D1
                 ],
                 [
                     "🔙 Menù",  # E1
-                    "Contatto 👤" if lcheck(u_id) else "Contact 👤",  # E2
+                    "Contatto 👤" if await lcheck(u_id) else "Contact 👤",  # E2
                 ],
             ],
             one_time_keyboard=False,
             resize_keyboard=True
         )
     )
-    alog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}")
+    _ = ct(clog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))
 
 
 @Client.on_message(f.regex("Quanto vale tutto questo?") | f.regex("eng text : r5"))
@@ -210,7 +212,7 @@ async def valore(_, msg):
             "Purtroppo anche solo rispondere a questa domanda, qui per messaggio, è estremamente riduttivo..\n"
             "Perché invece non me lo chiedete in pvt? @Ill_Magnus\n"
             "Oppure potete andare a vedere i social dei miei collaboratori più veterani (in ordine di importanza):"
-        ) if lcheck(u_id) else "eng text : r6",
+        ) if await lcheck(u_id) else "eng text : r6",
         reply_markup=Ikm([
             [Ikb(text="GIORGIO TRABALDO",
                  # url="https://www.instagram.com/giorgiotrabaldo?"
@@ -255,23 +257,23 @@ async def valore(_, msg):
         ]),
         disable_web_page_preview=True,
     )
-    alog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}")
+    _ = ct(clog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))
 
 
 @Client.on_message(f.regex("Guarda il Webinar"))
 async def webinar(_, msg):
     u_id = msg.from_user.id
     await msg.reply(
-        text="Scegli quale webinar guardare. tutti i webinar spiegano pressapoco le stesse cose." if lcheck(u_id)
+        text="Scegli quale webinar guardare. tutti i webinar spiegano pressapoco le stesse cose." if await lcheck(u_id)
         else "eng text : r7",
         reply_markup=Rkm(
             keyboard=[
                 [
-                    "Il mio webinar Ita" if lcheck(u_id) else "My webinar Eng",  # A1
-                    "Il mio webinar Eng" if lcheck(u_id) else "My webinar Ita",  # A2
+                    "Il mio webinar Ita" if await lcheck(u_id) else "My webinar Eng",  # A1
+                    "Il mio webinar Eng" if await lcheck(u_id) else "My webinar Ita",  # A2
                 ],
                 [
-                    "🇮🇹Webinar di Matteo Bianco" if lcheck(u_id)
+                    "🇮🇹Webinar di Matteo Bianco" if await lcheck(u_id)
                     else "🇮🇹Matteo Bianco's webinar",  # B1
                 ],
                 [
@@ -283,14 +285,14 @@ async def webinar(_, msg):
             resize_keyboard=True
         )
     )
-    alog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}")
+    _ = ct(clog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))
 
 
 @Client.on_message(f.regex("Il mio webinar Ita") | f.regex("My webinar Ita"))
 async def webinarita(_, msg):
     u_id = msg.from_user.id
     text = (f"Questo webinar è stato registrato apposta per informarvi in breve e senza giri di parole su "
-            f"quello che volete e dovete sapere:\n") if lcheck(u_id) \
+            f"quello che volete e dovete sapere:\n") if await lcheck(u_id) \
         else f"eng text : r8"
     await msg.reply(
         text=text,
@@ -301,14 +303,14 @@ async def webinarita(_, msg):
         ]),
         disable_web_page_preview=True,
     )
-    alog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}")
+    _ = ct(clog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))
 
 
 @Client.on_message(f.regex("Il mio webinar Eng") | f.regex("My webinar Eng"))
 async def webinareng(_, msg):
     u_id = msg.from_user.id
     text = (f"Questo webinar è stato registrato apposta per informarvi in breve e senza giri di parole su "
-            f"quello che volete e dovete sapere:\n") if lcheck(u_id) \
+            f"quello che volete e dovete sapere:\n") if await lcheck(u_id) \
         else f"eng text : r8"
     await msg.reply(
         text=text,
@@ -319,14 +321,14 @@ async def webinareng(_, msg):
         ]),
         disable_web_page_preview=True,
     )
-    alog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}")
+    _ = ct(clog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))
 
 
 @Client.on_message(f.regex("🇮🇹Webinar di Matteo Bianco") | f.regex("🇮🇹Matteo Bianco's Webinar"))
 async def webinarbianco(_, msg):
     u_id = msg.from_user.id
     text = (f"Questo webinar è stato registrato da parte di uno dei nostri leader per informarvi su "
-            f"quello che volete e dovete sapere:\n") if lcheck(u_id) \
+            f"quello che volete e dovete sapere:\n") if await lcheck(u_id) \
         else f"eng text : r9"
     await msg.reply(
         text=text,
@@ -344,22 +346,22 @@ async def webinarbianco(_, msg):
         ]),
         disable_web_page_preview=True,
     )
-    alog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}")
+    _ = ct(clog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))
 
 
 @Client.on_message(f.regex("WorkShop"))
 async def workshop(_, msg):
     u_id = msg.from_user.id
     await msg.reply(
-        text="Scegli quale WorkShop guardare. in questo caso i due workshop spiegano cose diverse." if lcheck(u_id)
-        else "eng text : r10",
+        text="Scegli quale WorkShop guardare. "
+             "in questo caso i due workshop spiegano cose diverse." if await lcheck(u_id) else "eng text : r10",
         reply_markup=Rkm(
             keyboard=[
                 [
-                    "gio&gia, lungo e completo" if lcheck(u_id) else "eng text : r11",  # A1
+                    "gio&gia, lungo e completo" if await lcheck(u_id) else "eng text : r11",  # A1
                 ],
                 [
-                    "Manenti, corto e abbastanza vecchio" if lcheck(u_id) else "eng text : r12",  # B1
+                    "Manenti, corto e abbastanza vecchio" if await lcheck(u_id) else "eng text : r12",  # B1
                 ],
                 [
                     "🔙 Menù",  # C1
@@ -367,17 +369,16 @@ async def workshop(_, msg):
                 ],
             ],
             one_time_keyboard=False,
-            resize_keyboard=True
-        )
+            resize_keyboard=True)
     )
-    alog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}")
+    _ = ct(clog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))
 
 
 @Client.on_message(f.regex("gio&gia, lungo e completo"))
 async def long_workshop(_, msg):
     u_id = msg.from_user.id
     text = (f"Questo workshop è stato registrato da parte di uno dei nostri leader per informarvi su "
-            f"quello che volete e dovete sapere:\n") if lcheck(u_id) \
+            f"quello che volete e dovete sapere:\n") if await lcheck(u_id) \
         else f"eng text : r13"
     await msg.reply(
         text=text,
@@ -395,10 +396,10 @@ async def long_workshop(_, msg):
         ]),
         disable_web_page_preview=True,
     )
-    alog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}")
+    _ = ct(clog(u_id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))
 
 
 @Client.on_message(f.regex("Altre Info") | f.regex("Other Info"))
 async def other_info(_, msg):
     await msg.reply_text("\\")
-    alog(msg.from_user.id, "testo", f"id:{msg.id}\n\ttext:{msg.text}")
+    _ = ct(clog(msg.from_user.id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))

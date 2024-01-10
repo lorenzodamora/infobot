@@ -2,11 +2,12 @@ from pyrogram import Client
 from pyrogram.types import CallbackQuery as Cbq
 
 
-def add(u_id, data: str):
-    from .linkClick import async_add_click as aac
-    from .log import async_log as alog
-    aac(data)
-    alog(u_id, "click", f"link: {data}")
+async def add(u_id, data: str):
+    from .linkClick import add_click as ac
+    from .log import complete_log as clog
+    from asyncio import create_task as ct
+    _ = ct(ac(data))
+    _ = ct(clog(u_id, "click", f"link: {data}"))
 
 
 @Client.on_callback_query()
@@ -21,14 +22,14 @@ async def callback(_, query: Cbq):
     msg = query.message
     if d == "form":
         await msg.reply(
-            text="**Form non ancora creato**" if lc(u_id) else "eng text : q0",
+            text="**Form non ancora creato**" if await lc(u_id) else "eng text : q0",
             parse_mode=m
         )
 
     elif d == "wa mio":
         url = "https://wa.me/c/393286435255"
         await msg.reply(
-            text=f"[Eccoti il link per contattarmi su whatsapp {url}]({url})" if lc(u_id)
+            text=f"[Eccoti il link per contattarmi su whatsapp]({url})\n[{url}]({url})" if await lc(u_id)
             else "eng text : q1",
             parse_mode=m
         )
@@ -36,148 +37,149 @@ async def callback(_, query: Cbq):
     elif d == "ig mio":
         url = "https://www.instagram.com/ill__lore?utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA=="
         await msg.reply(
-            text=f"[Eccoti il link per contattarmi su instagram {url}]({url})"
-            if lc(u_id) else "eng text : q2",
+            text=f"[Eccoti il link per contattarmi su instagram]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q2",
             parse_mode=m
         )
 
     elif d == "ig giorgio trabaldo":
         url = "https://www.instagram.com/giorgiotrabaldo?utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA=="
         await msg.reply(
-            text=f"[Eccoti il link instagram di Giorgio Trabaldo {url}]({url})"
-            if lc(u_id) else "eng text : q3",
+            text=f"[Eccoti il link instagram di Giorgio Trabaldo]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q3",
             parse_mode=m
         )
 
     elif d == "ig matteo bianco":
         url = "https://www.instagram.com/matteobianco_papi?utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA=="
         await msg.reply(
-            text=f"[Eccoti il link instagram di Matteo Bianco Papi {url}]({url})"
-            if lc(u_id) else "eng text : q4",
+            text=f"[Eccoti il link instagram di Matteo Bianco Papi]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q4",
             parse_mode=m
         )
 
     elif d == "ig mauro boccomino":
         url = "https://www.instagram.com/mauro_boccomino?utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA=="
         await msg.reply(
-            text=f"[Eccoti il link instagram di Mauro Boccomino {url}]({url})"
-            if lc(u_id) else "eng text : q5",
+            text=f"[Eccoti il link instagram di Mauro Boccomino]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q5",
             parse_mode=m
         )
 
     elif d == "ig andrea traina":
         url = "https://www.instagram.com/andreatraina_?utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA=="
         await msg.reply(
-            text=f"[Eccoti il link instagram di Andrea Traina {url}]({url})"
-            if lc(u_id) else "eng text : q6",
+            text=f"[Eccoti il link instagram di Andrea Traina]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q6",
             parse_mode=m
         )
 
     elif d == "ig matteo depretis":
         url = "https://www.instagram.com/matteo.depetris?utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA=="
         await msg.reply(
-            text=f"[Eccoti il link instagram di Matteo Depetris {url}]({url})"
-            if lc(u_id) else "eng text : q7",
+            text=f"[Eccoti il link instagram di Matteo Depetris]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q7",
             parse_mode=m
         )
 
     elif d == "ig dylan dagani":
         url = "https://www.instagram.com/dylandagani?utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA=="
         await msg.reply(
-            text=f"[Eccoti il link instagram di Dylan Dagani {url}]({url})"
-            if lc(u_id) else "eng text : q8",
+            text=f"[Eccoti il link instagram di Dylan Dagani]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q8",
             parse_mode=m
         )
 
     elif d == "ig marco manenti":
         url = "https://www.instagram.com/marcomanentii?utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA=="
         await msg.reply(
-            text=f"[Eccoti il link instagram di Marco Manenti {url}]({url})"
-            if lc(u_id) else "eng text : q9",
+            text=f"[Eccoti il link instagram di Marco Manenti]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q9",
             parse_mode=m
         )
 
     elif d == "ig manuel mazzola":
         url = "https://www.instagram.com/manuel_mazzola_?utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA=="
         await msg.reply(
-            text=f"[Eccoti il link instagram di Manuel Mazzola {url}]({url})"
-            if lc(u_id) else "eng text : q10",
+            text=f"[Eccoti il link instagram di Manuel Mazzola]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q10",
             parse_mode=m
         )
 
     elif d == "ig brandon zanchi":
         url = "https://www.instagram.com/brandon.zanchi?utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA=="
         await msg.reply(
-            text=f"[Eccoti il link instagram di Brandon Zanchi {url}]({url})"
-            if lc(u_id) else "eng text : q11",
+            text=f"[Eccoti il link instagram di Brandon Zanchi]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q11",
             parse_mode=m
         )
 
     elif d == "my webinar ita":
         await msg.reply(
-            text="**Webinar non ancora caricato**" if lc(u_id) else "eng text : q12",
+            text="**Webinar non ancora caricato**" if await lc(u_id) else "eng text : q12",
             parse_mode=m
         )
 
     elif d == "my webinar eng":
         await msg.reply(
-            text="**Webinar non ancora caricato**" if lc(u_id) else "eng text : q13",
+            text="**Webinar non ancora caricato**" if await lc(u_id) else "eng text : q13",
             parse_mode=m
         )
 
     elif d == "webinar bianco":
         url = "https://youtube.com/playlist?list=PLcm45GY4vpKDqWQp99sPt-IL5SYnDSNwn&si=1_Jt-xGQvEUi_ovI"
         await msg.reply(
-            text=f"[Eccoti il link youtube del webinar di Matteo Bianco {url}]({url})"
-            if lc(u_id) else "eng text : q14",
+            text=f"[Eccoti il link youtube del webinar di Matteo Bianco]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q14",
             parse_mode=m
         )
 
     elif d == "ig bianco from webinar bianco":
         url = "https://www.instagram.com/matteobianco_papi?utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA=="
         await msg.reply(
-            text=f"[Eccoti il link instagram di Matteo Bianco Papi {url}]({url})"
-            if lc(u_id) else "eng text : q4",
+            text=f"[Eccoti il link instagram di Matteo Bianco Papi]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q4",
             parse_mode=m
         )
 
     elif d == "tt bianco from webinar bianco":
         url = "https://www.tiktok.com/@biancomatteo?_t=8iduVPPtLou&_r=1"
         await msg.reply(
-            text=f"[Eccoti il link tik-tok di Matteo Bianco Papi {url}]({url})"
-            if lc(u_id) else "eng text : q15",
+            text=f"[Eccoti il link tik-tok di Matteo Bianco Papi]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q15",
             parse_mode=m
         )
 
     elif d == "workshop gio&gia":
         url = "https://youtube.com/playlist?list=PLcm45GY4vpKCztVDHlfcPpyG4DPydaov0&si=YV8z-7uOrPKMpa7F"
         await msg.reply(
-            text=f"[Eccoti il link youtube del whorkshop di gio&gia {url}]({url})"
-            if lc(u_id) else "eng text : q16",
+            text=f"[Eccoti il link youtube del whorkshop di gio&gia]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q16",
             parse_mode=m
         )
 
     elif d == "ig giorgio from gio&gia":
         url = "https://www.instagram.com/giorgiotrabaldo?utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA=="
         await msg.reply(
-            text=f"[Eccoti il link instagram di Giorgio Trabaldo {url}]({url})"
-            if lc(u_id) else "eng text : q3",
+            text=f"[Eccoti il link instagram di Giorgio Trabaldo]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q3",
             parse_mode=m
         )
 
     elif d == "tt giorgio from gio&gia":
         url = "https://www.tiktok.com/@giorgiotrabaldo?_t=8ifrWVfS3yz&_r=1"
         await msg.reply(
-            text=f"[Eccoti il link tik-tok di Giorgio Trabaldo {url}]({url})"
-            if lc(u_id) else "eng text : q17",
+            text=f"[Eccoti il link tik-tok di Giorgio Trabaldo]({url})\n[{url}]({url})"
+            if await lc(u_id) else "eng text : q17",
             parse_mode=m
         )
 
     else:
         # errore
-        await msg.reply_text(f"c'è stato un errore, contattami @ill_magnus" if lc(u_id) else "eng text : q18\nerror")
-        add(u_id, f"ERRORE\nATTENZIONE\ndata:{d}\nRisolto?no")
+        await msg.reply_text(f"c'è stato un errore, contattami @ill_magnus" if await lc(u_id) else "eng text : q18"
+                                                                                                   "\nerror")
+        await add(u_id, f"ERRORE\nATTENZIONE\ndata:{d}\nRisolto?no")
         errore = True
 
     if not errore:
-        add(u_id, d)
+        await add(u_id, d)

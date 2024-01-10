@@ -1,15 +1,33 @@
-import csv
-import threading
+"""
+questo file gestisce il file 'allUser.csv'
+"""
+from asyncio import Lock
+from datetime import datetime as dt
+
 # Creare un lock globale per evitare concorrenza durante la scrittura del file
-lock_allUser = threading.Lock()
+lock_allUser = Lock()
 
 
-async def update_all_user(user_id, first_name, tag, datetime_value):
+async def update_all_user(user_id, first_name: str, tag: str,
+                          datetime_value: dt) -> list[False:bool | True:bool, dict[str, str]]:
+    """
+    aggiorna il file all user, e crea il file 'user_id'.log
+
+    :param user_id: id utente
+    :param first_name: nome utente
+    :param tag: username utente
+    :param datetime_value: data e ora di primo join
+    :return: ritorna una lista,
+        dove il primo valore è true se l'utente è nuovo,
+        e se è true il secondo elemento è un dict che descrive l'utente aggiunto
+    :rtype: list[False:bool | True:bool, dict[str, str]]
+    """
+    import csv
     # Converti il valore datetime in una stringa formattata
     datetime_str = datetime_value.strftime('%d-%m-%Y %H:%M:%S')
 
     # Acquisire il lock prima di accedere al file
-    with lock_allUser:
+    async with lock_allUser:
         # Apri il file CSV in modalità lettura
         with open("../database/allUser.csv", mode='r', newline='', encoding='utf-8') as file:
             # Leggi il file CSV
@@ -21,11 +39,11 @@ async def update_all_user(user_id, first_name, tag, datetime_value):
     utente_presente = False
 
     # Itera attraverso le righe del CSV
+    usr = str(user_id)
     for row in rows:
         # Se l'ID utente è presente
         r = str(row['user_id'])
-        us = str(user_id)
-        if r == us:
+        if r == usr:
             utente_presente = True
 
             # Se il nome utente è cambiato, aggiorna il nome
@@ -37,16 +55,16 @@ async def update_all_user(user_id, first_name, tag, datetime_value):
 
     # Se l'utente non è presente, aggiungi una nuova riga
     if not utente_presente:
-        nuova_riga = {'user_id': user_id, 'first_name': first_name, 'tag': tag, 'datetime': datetime_str}
+        nuova_riga = {'user_id': usr, 'first_name': first_name, 'tag': tag, 'datetime': datetime_str}
         rows.append(nuova_riga)
         # crea file di log
-        open(f"../database/userLogs/{user_id}.log", "w").close()
+        open(f"../database/userLogs/{usr}.log", "w").close()
         ret = [True, nuova_riga]
     else:
         ret = [False]
 
     # Acquisire il lock prima di accedere al file
-    with lock_allUser:
+    async with lock_allUser:
         # Scrivi nel file CSV aggiornato
         with open("../database/allUser.csv", mode='w', newline='', encoding='utf-8') as file:
             # Scrivi le righe aggiornate nel file

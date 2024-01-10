@@ -1,3 +1,14 @@
+import sys
+
+sys.path.append('/home/ubuntu/Magnus/PycharmProj/infobot/python/python3.12/site-packages')
+
+# Ora puoi importare i moduli Pyrogram e TgCrypto
+import pyrogram
+import tgcrypto
+
+# Resto del tuo script...
+
+
 from pyrogram import Client
 import os
 
@@ -11,7 +22,6 @@ t_token = "token ottenuto con botFather"
 '''
 
 plugins = dict(root="plugins")
-
 
 # Crea il file se non esiste
 if not os.path.exists("../database/allUser.csv"):

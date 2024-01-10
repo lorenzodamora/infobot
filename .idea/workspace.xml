@@ -5,43 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c153191-4fb7-419c-93ba-12a7284c88bd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/infobot.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/clientParameters.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/database/alluser.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/database/linkClick.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/database/userLogs/-1002054102325.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/database/userLogs/1078867417.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/database/userLogs/1259233812.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/database/userLogs/649363031.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/database/user_preferences.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/my_infobot.session" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/plugins/callback.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/plugins/command.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/plugins/lang.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/plugins/linkClick.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/plugins/log.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/plugins/newuser.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/plugins/replykeyboard.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testEnv/plugins/setLang.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workEnv/database/alluser.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workEnv/database/userLogs/1078867417.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workEnv/database/userLogs/1259233812.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workEnv/database/userLogs/649363031.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workEnv/database/user_preferences.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workEnv/lang.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workEnv/my_infobot.session" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workEnv/plugins/command.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workEnv/plugins/log.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workEnv/plugins/newuser.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workEnv/plugins/replykeyboard.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workEnv/plugins/setLang.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testEnv/mainVps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testEnv/start.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testEnv/stop.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testEnv/stop.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testEnv/stopVps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/testEnv/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/plugins/callback.py" beforeDir="false" afterPath="$PROJECT_DIR$/testEnv/plugins/callback.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/plugins/command.py" beforeDir="false" afterPath="$PROJECT_DIR$/testEnv/plugins/command.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/plugins/lang.py" beforeDir="false" afterPath="$PROJECT_DIR$/testEnv/plugins/lang.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/plugins/linkClick.py" beforeDir="false" afterPath="$PROJECT_DIR$/testEnv/plugins/linkClick.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/plugins/log.py" beforeDir="false" afterPath="$PROJECT_DIR$/testEnv/plugins/log.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/plugins/newuser.py" beforeDir="false" afterPath="$PROJECT_DIR$/testEnv/plugins/newuser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/plugins/replykeyboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/testEnv/plugins/replykeyboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workEnv/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/workEnv/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workEnv/plugins/callback.py" beforeDir="false" afterPath="$PROJECT_DIR$/workEnv/plugins/callback.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workEnv/plugins/command.py" beforeDir="false" afterPath="$PROJECT_DIR$/workEnv/plugins/command.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workEnv/plugins/lang.py" beforeDir="false" afterPath="$PROJECT_DIR$/workEnv/plugins/lang.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workEnv/plugins/linkClick.py" beforeDir="false" afterPath="$PROJECT_DIR$/workEnv/plugins/linkClick.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workEnv/plugins/log.py" beforeDir="false" afterPath="$PROJECT_DIR$/workEnv/plugins/log.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workEnv/plugins/newuser.py" beforeDir="false" afterPath="$PROJECT_DIR$/workEnv/plugins/newuser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workEnv/plugins/replykeyboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/workEnv/plugins/replykeyboard.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,24 +48,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.command.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.test main.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/ldamo/PycharmProjects/infobot/workEnv/main.py"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.command.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.test main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.work main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ldamo/PycharmProjects/infobot/workEnv&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ldamo\PycharmProjects\infobot\testEnv\plugins" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test main">
+  <component name="RunManager" selected="Python.work main">
     <configuration name="test main" type="PythonConfigurationType" factoryName="Python">
       <module name="infobot" />
       <option name="ENV_FILES" value="" />
@@ -90,7 +77,7 @@
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="SDK_NAME" value="Python 3.12 (infobot)" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\ldamo\PycharmProjects\infobot\testEnv\" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -113,7 +100,7 @@
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="SDK_NAME" value="Python 3.12 (infobot)" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\ldamo\PycharmProjects\infobot\workEnv\" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -152,23 +139,18 @@
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/testEnv/main.py</url>
-          <line>17</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/testEnv/main.py</url>
-          <line>18</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -1,7 +1,7 @@
 import csv
-import threading
+from asyncio import Lock
 # Creare un lock globale per evitare concorrenza durante la scrittura del file
-lock_allUser = threading.Lock()
+lock_allUser = Lock()
 
 
 async def update_all_user(user_id, first_name, tag, datetime_value):
@@ -9,7 +9,7 @@ async def update_all_user(user_id, first_name, tag, datetime_value):
     datetime_str = datetime_value.strftime('%d-%m-%Y %H:%M:%S')
 
     # Acquisire il lock prima di accedere al file
-    with lock_allUser:
+    async with lock_allUser:
         # Apri il file CSV in modalità lettura
         with open("../database/allUser.csv", mode='r', newline='', encoding='utf-8') as file:
             # Leggi il file CSV
@@ -46,7 +46,7 @@ async def update_all_user(user_id, first_name, tag, datetime_value):
         ret = [False]
 
     # Acquisire il lock prima di accedere al file
-    with lock_allUser:
+    async with lock_allUser:
         # Scrivi nel file CSV aggiornato
         with open("../database/allUser.csv", mode='w', newline='', encoding='utf-8') as file:
             # Scrivi le righe aggiornate nel file

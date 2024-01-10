@@ -1,7 +1,7 @@
 from pyrogram import Client
 import os
 
-# crea accanto a main.py il file clientParameters.py con dentro queste tre variabili, io l'ho messo in .gitignore
+# crea accanto a main.py il file myClientParameters.py con dentro queste tre variabili, io l'ho messo in .gitignore
 from clientParameters import t_id, t_hash, t_token
 '''
 t_id = "id numerico"
@@ -49,4 +49,6 @@ try:
 finally:
     bot.start()
     bot.edit_message_text(chat_id=channel_id, message_id=2, text="ℹ️ BOT STATUS:\n\n    🔴 Offline")
+    from time import sleep
+    sleep(1)
     bot.stop()

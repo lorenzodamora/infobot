@@ -1,16 +1,20 @@
-import threading
+"""
+questo file gestisce il file di conteggio click per le statistiche
+"""
+from asyncio import Lock
 # Creare un lock globale per evitare concorrenza durante la scrittura del file
-lock_linkClick = threading.Lock()
+lock_linkClick = Lock()
 
 
-def async_add_click(field: str):
-    from asyncio import create_task as ct
-    _ = ct(add_click(field))
+async def add_click(field: str):
+    """
+    aggiunge il click al file, dato il campo
 
-
-async def add_click(field):
+    :param field: campo del click
+    :type field: str
+    """
     # Acquisire il lock prima di accedere al file
-    with lock_linkClick:
+    async with lock_linkClick:
         # Leggi il contenuto attuale del file
         with open("../database/linkClick.txt", "r") as file:
             lines = file.readlines()
@@ -29,7 +33,7 @@ async def add_click(field):
     if not trovato:
         lines.append(f"{field}: 1\n")
     # Acquisire il lock prima di accedere al file
-    with lock_linkClick:
+    async with lock_linkClick:
         # Scrivi il nuovo contenuto nel file
         with open("../database/linkClick.txt", "w") as file:
             file.writelines(lines)

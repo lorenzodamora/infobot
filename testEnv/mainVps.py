@@ -1,9 +1,19 @@
+import sys
+
+sys.path.append('/home/ubuntu/Magnus/PycharmProj/infobot/python/python3.12/site-packages')
+
+# Ora puoi importare i moduli Pyrogram e TgCrypto
+import pyrogram
+import tgcrypto
+
+# Resto del tuo script...
+
+
 from pyrogram import Client
 import os
 
 # crea accanto a main.py il file myClientParameters.py con dentro queste tre variabili, io l'ho messo in .gitignore
-from myClientParameters import t_id, t_hash, t_token
-from myParameters import channel_id
+from clientParameters import t_id, t_hash, t_token
 '''
 t_id = "id numerico"
 t_hash = "hash alfanumerico"
@@ -12,12 +22,21 @@ t_token = "token ottenuto con botFather"
 
 plugins = dict(root="plugins")
 
+my_id = 649363031
+channel_id = -1002054102325
 
 # Crea il file se non esiste
 if not os.path.exists("../database/allUser.csv"):
-    open("../database/allUser.csv", 'w').write("user_id;first_name;tag;datetime\r\n")
+    with open("../database/allUser.csv", 'w') as au:
+        au.write("user_id;first_name;tag;datetime\n")
+        au.close()
 if not os.path.exists("../database/linkClick.txt"):
-    open("../database/linkClick.txt", 'w').write("form:0\r\nwa mio:0\r\nig mio:0\r\n")
+    with open("../database/linkClick.txt", 'w') as flc:
+        flc.write("form:0\nwa mio:0\nig mio:0\nig giorgio trabaldo:0\nig matteo bianco:0\nig mauro boccomino:0\n"
+                  "ig andrea traina:0\nig matteo depretis:0\nig dylan dagani:0\nig marco manenti:0\n"
+                  "ig manuel mazzola:0\nig brandon zanchi:0\nmy webinar ita:0\nmy webinar eng:0\nwebinar bianco:0\n"
+                  "ig bianco from webinar bianco:0\ntt bianco from webinar bianco:0\n")
+        flc.close()
 
 bot = Client(
     name="my_infobot",
@@ -28,6 +47,7 @@ bot = Client(
 )
 
 with bot:
+    # app.send_message(chat_id=my_id, text="Ready")
     try:
         bot.edit_message_text(chat_id=channel_id, message_id=2, text="ℹ️ BOT STATUS:\n\n    🟢 Online")
     except Exception as e:
