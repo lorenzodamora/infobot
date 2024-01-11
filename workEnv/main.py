@@ -1,9 +1,9 @@
 from pyrogram import Client
-import os
+from os.path import exists
 
 # crea accanto a main.py il file myClientParameters.py con dentro queste tre variabili, io l'ho messo in .gitignore
 from myClientParameters import t_id, t_hash, t_token
-from myParameters import channel_id
+from plugins.myParameters import channel_id
 '''
 t_id = "id numerico"
 t_hash = "hash alfanumerico"
@@ -14,9 +14,9 @@ plugins = dict(root="plugins")
 
 
 # Crea il file se non esiste
-if not os.path.exists("../database/allUser.csv"):
+if not exists("../database/allUser.csv"):
     open("../database/allUser.csv", 'w').write("user_id;first_name;tag;datetime\r\n")
-if not os.path.exists("../database/linkClick.txt"):
+if not exists("../database/linkClick.txt"):
     open("../database/linkClick.txt", 'w').write("form:0\r\nwa mio:0\r\nig mio:0\r\n")
 
 bot = Client(

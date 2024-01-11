@@ -1,7 +1,7 @@
 from pyrogram import Client
 from myClientParameters import t_id, t_hash, t_token
 from time import sleep
-from myParameters import channel_id
+from plugins.myParameters import channel_id
 plugins = dict(root="plugins")
 bot = Client(
     name="my_infobot",

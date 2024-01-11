@@ -9,7 +9,7 @@ lock_allUser = Lock()
 
 
 async def update_all_user(user_id, first_name: str, tag: str,
-                          datetime_value: dt) -> list[False:bool | True:bool, dict[str, str]]:
+                          datetime_value: dt) -> list[False:bool] | list[True:bool, dict[str, str]]:
     """
     aggiorna il file all user, e crea il file 'user_id'.log
 
@@ -20,7 +20,7 @@ async def update_all_user(user_id, first_name: str, tag: str,
     :return: ritorna una lista,
         dove il primo valore è true se l'utente è nuovo,
         e se è true il secondo elemento è un dict che descrive l'utente aggiunto
-    :rtype: list[False:bool | True:bool, dict[str, str]]
+    :rtype: list[False:bool] | list[True:bool, dict[str, str]]
     """
     import csv
     # Converti il valore datetime in una stringa formattata

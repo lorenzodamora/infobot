@@ -6,7 +6,7 @@ from pyrogram.types import Message as Msg, User
 from .replykeyboard import lcheck as lc
 from .log import complete_log as clog
 from asyncio import create_task as ct
-from ..myParameters import channel_id, my_id
+from .myParameters import channel_id, my_id
 
 
 # Definisci una funzione per gestire il comando /start
