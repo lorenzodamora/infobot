@@ -6,9 +6,10 @@
 *.session
 *.session-journal
 
-# token e api
+# token, api e key
 */myClientParameters.py
 */clientParameters.py
+*/pushbullet_APIKEY.py
 
 # database utenti
 database/linkClick.txt
