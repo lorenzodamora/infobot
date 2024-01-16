@@ -1,3 +1,6 @@
+import sys
+sys.path.append('/home/ubuntu/Magnus/PycharmProj/infobot/python/python3.12/site-packages')
+
 from pushbullet import Pushbullet
 import time
 import os

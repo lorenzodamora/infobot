@@ -13,9 +13,9 @@ t_token = "token ottenuto con botFather"
 
 # Crea il file se non esiste
 if not exists("../database/allUser.csv"):
-    open("../database/allUser.csv", 'w').write("user_id;first_name;tag;datetime\r\n")
+    open("../database/allUser.csv", 'w').write("user_id;first_name;tag;datetime\n")
 if not exists("../database/linkClick.txt"):
-    open("../database/linkClick.txt", 'w').write("form:0\r\nwa mio:0\r\nig mio:0\r\n")
+    open("../database/linkClick.txt", 'w').write("form:0\nwa mio:0\nig mio:0\n")
 
 pb = Pushbullet(pushKey)
 plugins = dict(root="plugins")

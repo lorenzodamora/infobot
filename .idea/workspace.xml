@@ -7,10 +7,25 @@
     <list default="true" id="6c153191-4fb7-419c-93ba-12a7284c88bd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/check_output.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_output.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/mainVps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/plugins/callback.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/plugins/command.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/plugins/lang.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/plugins/linkClick.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/plugins/log.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/plugins/newuser.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/plugins/replykeyboard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/plugins/setLang.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/start.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/stop.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/stop.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testEnv/stopVps.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/workEnv/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/workEnv/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workEnv/mainVps.py" beforeDir="false" afterPath="$PROJECT_DIR$/workEnv/mainVps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workEnv/stop.py" beforeDir="false" afterPath="$PROJECT_DIR$/workEnv/stop.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workEnv/stopVps.py" beforeDir="false" afterPath="$PROJECT_DIR$/workEnv/stopVps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workEnv/plugins/command.py" beforeDir="false" afterPath="$PROJECT_DIR$/workEnv/plugins/command.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workEnv/plugins/replykeyboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/workEnv/plugins/replykeyboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workEnv/plugins/setLang.py" beforeDir="false" afterPath="$PROJECT_DIR$/workEnv/plugins/setLang.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +67,7 @@
       <recent name="C:\Users\ldamo\PycharmProjects\infobot\testEnv\plugins" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.test main">
     <configuration name="test main" type="PythonConfigurationType" factoryName="Python">
       <module name="infobot" />
       <option name="ENV_FILES" value="" />

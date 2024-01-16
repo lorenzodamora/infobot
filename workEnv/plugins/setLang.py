@@ -45,4 +45,3 @@ async def msg_other(_, msg: Msg):
     from asyncio import create_task as ct
     from .log import complete_log as clog
     _ = ct(clog(msg.from_user.id, "testo", f"id:{msg.id}\n\ttext:{msg.text}"))
-

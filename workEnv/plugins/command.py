@@ -78,9 +78,7 @@ filter_list = (
     f.regex(r"^Perché mi chiede il numero di telefono?$") | f.regex(r"^Dati sensibili$") |
     f.regex(r"^Quanto vale tutto questo?$") | f.regex(r"^Altre Info$") | f.regex(r"^Other Info$")
 )
-"""
-lista di filtri che hanno già un altra funzione associata
-"""
+""" lista di filtri che hanno già un altra funzione associata """
 
 
 @Client.on_message(~filter_list)
