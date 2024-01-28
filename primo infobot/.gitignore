@@ -13,9 +13,7 @@
 pushbullet_APIKEY.py
 
 # database utenti
-*/database
-*/database/linkClick.txt
+database/linkClick.txt
 *.log
 *.csv
 *.pkl
-mazzoBot/workEnv/myClientParameters.py
