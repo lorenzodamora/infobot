@@ -7,6 +7,7 @@
 *.session-journal
 
 # token, api e key
+mazzoBot/workEnv/myClientParameters.py
 */myClientParameters.py
 */clientParameters.py
 */pushbullet_APIKEY.py
@@ -18,4 +19,3 @@ pushbullet_APIKEY.py
 *.log
 *.csv
 *.pkl
-mazzoBot/workEnv/myClientParameters.py
