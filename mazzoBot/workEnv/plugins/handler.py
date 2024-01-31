@@ -107,7 +107,8 @@ async def valore(msg: Msg):
                  url="https://www.instagram.com/manuel_mazzola_?utm_source=ig_web_button_share_sheet&"
                      "igsh=OGQ5ZDc2ODk2ZA==")],
             [Ikb(text=f"LORENZO D'AMORA {'(io)' if await lc(id_) else '(me)'}",
-                 url="google.com/search?q=wip")],
+                 url="https://www.instagram.com/d.amora_lorenzo?"
+                     "utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA==")],
         ]),
         disable_web_page_preview=True,
     )
@@ -135,7 +136,7 @@ async def event_handler(client: Client, msg: Msg):
 
     elif c_id == MY_ID and not check_cmd(cmd, {f'/{MY_ID}': 2}):
         # se io mando un messaggio ignoralo
-        _ = ct(clog(MY_ID, "noreply self", f"id:{msg.id}\n\ttext:{msg.text}"))
+        ltype = "noreply channel"
     # endregion
 
     # region step 1
@@ -258,6 +259,7 @@ async def event_handler(client: Client, msg: Msg):
 
     elif check_cmd(cmd, {'🎉': 3}):
         await msg.reply_text("🎉")
+        ltype = "emoji"
     # endregion
 
     # region extra

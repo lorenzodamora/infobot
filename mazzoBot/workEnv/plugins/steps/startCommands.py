@@ -33,7 +33,7 @@ async def start_command(client: Client, msg: Msg, my_id: int):
     )
     await client.send_message(
         chat_id=msg.chat.id,
-        text="🇬🇧🇬🇧 Hi! Thanks you for Power-On me! I'm waiting for you!\n"
+        text="🇬🇧🇬🇧 Hi! Thank you for powering me on, I was waiting for you!\n"
     )
     _ = ct(adduser(msg.from_user))
 
