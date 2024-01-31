@@ -11,7 +11,7 @@ from ..handler import mycontact
 
 async def step3(msg: Msg):
     """Manda il link video della startUp"""
-    msg = await msg.reply(
+    await msg.reply(
         text="Ovviamente per iniziare a vivere la vita da film che sogni!\n"
              "Il modo più veloce per entrambi è guardare questo video!\n/contatto" if await lc(msg.chat.id) else
         "Of course, to start living the movie-like life you dream of!\n"
