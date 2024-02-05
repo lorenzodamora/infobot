@@ -49,6 +49,10 @@ async def mycontact(msg: Msg):
     """ invia il mio contatto """
     from .lang import lc
     tme = "https://t.me/Ill_Magnus"
+    wa_url = ("https://wa.me/393286435255?text=Ciaoo%21%0AHo%20ricevuto%20questo%20contatto%20dal%20tuo%20bot%20su%20"
+              "Telegram.%0AMolto%20piacere%21%21" if await lc(msg.from_user.id) else
+              "https://wa.me/393286435255?text=Hii%21%0AI%20received%20this%20contact%20from%20your%20bot%20on%20"
+              "Telegram.%0ANice%20to%20meet%20you%21%21")
     from pyrogram.enums import ParseMode as Pm
     from pyrogram.types import InlineKeyboardMarkup as Ikm, InlineKeyboardButton as Ikb
     await msg.reply(
@@ -58,7 +62,8 @@ async def mycontact(msg: Msg):
         "\nOther contacts:",
         parse_mode=Pm.MARKDOWN,  # Usa la formattazione Markdown
         reply_markup=Ikm([
-            [Ikb(text="Whatsapp", url="https://wa.me/message/WEMT77WGHU4WF1")],
+            [Ikb(text="Whatsapp",
+                 url=wa_url)],
             [Ikb(text="Telegram", url=tme)],
             [Ikb(text="Nekogram", url="https://t.me/ill_lore")],
         ]),
@@ -118,6 +123,7 @@ async def valore(msg: Msg):
 async def event_handler(client: Client, msg: Msg):
     from .lang import lc
     from .myParameters import CHANNEL_ID, MY_ID
+    from os import getenv
 
     if msg.text:
         import chardet
@@ -125,18 +131,23 @@ async def event_handler(client: Client, msg: Msg):
         if str(result['encoding']) == 'None':
             return
 
+    # Leggi la variabile d'ambiente e convertila in booleano (numerico)
+    is_dev = getenv('dev', '0') == '1'
     cmd = msg.text.lower()
     c_id = msg.chat.id
     ltype = "\\"
 
     # region noreply
-    if c_id == CHANNEL_ID:
+    if is_dev and c_id != MY_ID:
+        ltype = "noreply dev"
+
+    elif c_id == CHANNEL_ID:
         # se il canale manda un messaggio ignoralo
         ltype = "noreply channel"
 
-    elif c_id == MY_ID and not check_cmd(cmd, {f'/{MY_ID}': 2}):
+    elif ((not is_dev) and c_id == MY_ID) and not check_cmd(cmd, {f'/{MY_ID}': 2}):
         # se io mando un messaggio ignoralo
-        ltype = "noreply channel"
+        ltype = "noreply self"
     # endregion
 
     # region step 1

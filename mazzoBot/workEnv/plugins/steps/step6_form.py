@@ -8,18 +8,19 @@ from ..lang import lc
 
 
 async def step6(msg: Msg):
+    id_ = msg.chat.id
     await msg.reply(
         text="Abbiamo praticamente già finito, non è fantastico?!\n\n"
              "Compila questo questionario se vuoi la possibilità di essere scelto come nostro collaboratore!\n"
              "Se hai qualche dubbio prova a cliccare /form oppure contattami! @Ill_Magnus"
-        if await lc(msg.chat.id)
+        if await lc(id_)
         else "We've practically finished already, isn't it fantastic?!\n\n"
              "Fill out this questionnaire if you want the chance to be chosen as our collaborator!\n"
              "If you have any doubts, try clicking /form or contact me! @Ill_Magnus",
         reply_markup=Ikm([[
             Ikb(
                 text="FORM",
-                url="google.com/search?q=wip"
+                url="https://dub.sh/Leverage-Form-" + ("Ita" if await lc(id_) else "Eng")
             )
         ]]),
         disable_web_page_preview=True,  # Disabilita l'anteprima del sito web se presente
