@@ -13,9 +13,13 @@ async def step3(msg: Msg):
     """Manda il link video della startUp"""
     await msg.reply(
         text="Ovviamente per iniziare a vivere la vita da film che sogni!\n"
-             "Il modo più veloce per entrambi è guardare questo video!\n/contatto" if await lc(msg.chat.id) else
+             "Il modo più veloce per entrambi è guardare questo video!\n"
+             "Il video è pieno di informazioni, perciò prendi assolutamente carta e penna!!\n"
+             "    /contatto" if await lc(msg.chat.id) else
         "Of course, to start living the movie-like life you dream of!\n"
-        "The fastest way for both is to watch this video!\n/contact",
+        "The fastest way for both is to watch this video!\n"
+        "The video is packed with information, so be sure to have pen and paper ready!!\n"
+        "    /contact",
         reply_markup=Ikm([[
                 Ikb(
                     text="VIDEO",
@@ -25,4 +29,7 @@ async def step3(msg: Msg):
         disable_web_page_preview=True,  # Disabilita l'anteprima del sito web se presente
     )
     await sleep(20)
-    await mycontact(msg)
+    try:
+        await mycontact(msg)
+    except Exception as e:
+        print(f"msg:{vars(msg)}\n\nException:{e}")
