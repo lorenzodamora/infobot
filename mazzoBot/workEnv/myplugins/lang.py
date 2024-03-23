@@ -4,9 +4,9 @@ questo file contiene il get e il set della lingua del singolo utente
 import os
 import pickle
 from asyncio import Lock
+from myParameters import PREFERENCES_FILE
 # Creare un lock globale per evitare concorrenza durante la scrittura del file
 lock_pkl = Lock()
-PREFERENCES_FILE = '../database/userPreferences.pkl'
 
 
 # Funzione per ottenere la lingua preferita di un utente

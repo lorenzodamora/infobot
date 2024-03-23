@@ -1,8 +1,10 @@
 """
 questo file gestisce i files di logs
 """
-# Creare un lock globale per evitare concorrenza durante la scrittura del file
-# lock_userlogs = threading.Lock()
+from datetime import datetime
+from asyncio import Lock
+from myParameters import USERLOGS_FOLD
+
 lock_userLogs = {}
 
 
@@ -32,20 +34,19 @@ def create_log_line(log_type: str, details: str) -> str:
     :return: ritorna le linee di log
     :rtype: str
     """
-    from datetime import datetime
-    datetime_ = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
-    return f"{datetime_} -- {log_type}:\n\t{details}"
+    # datetime_ = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+    # return f"{datetime_} -- {log_type}:\n\t{details}"
+    return f"{datetime.now().strftime('%d-%m-%Y %H:%M:%S')} -- {log_type}:\n\t{details}"
 
 
-async def add_log(user_id, msg: str):
+async def add_log(user_id, txt: str):
     """
     aggiunge il log al file 'user_id'.log
 
     :param user_id: id utente che sarà il nome del file .log
-    :param msg: testo del log
-    :type msg: str
+    :param txt: testo del log
+    :type txt: str
     """
-    from asyncio import Lock
     global lock_userLogs
     u_id = str(user_id)
     # crea il lock se non esiste
@@ -54,4 +55,4 @@ async def add_log(user_id, msg: str):
     # Acquisire il lock prima di accedere al file
     async with lock_userLogs[u_id]:
         # file creato in ./newuser.py
-        open(f"../database/userLogs/{u_id}.log", mode="a", encoding="utf-8").write(f"{msg}\n\n")
+        open(f"{USERLOGS_FOLD}/{u_id}.log", "a", encoding="utf-8").write(f"{txt}\n\n")
