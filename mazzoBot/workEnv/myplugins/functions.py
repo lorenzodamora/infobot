@@ -1,6 +1,6 @@
 from pyrogram.types import Message as Msg
-from lang import lc
-from myParameters import COMMANDS
+from .lang import lc
+from .myParameters import COMMANDS
 
 __all__ = (
     'check_cmd1',

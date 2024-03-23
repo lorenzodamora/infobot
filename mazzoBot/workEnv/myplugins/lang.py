@@ -4,7 +4,7 @@ questo file contiene il get e il set della lingua del singolo utente
 import os
 import pickle
 from asyncio import Lock
-from myParameters import PREFERENCES_FILE
+from .myParameters import PREFERENCES_FILE
 # Creare un lock globale per evitare concorrenza durante la scrittura del file
 lock_pkl = Lock()
 
@@ -53,8 +53,7 @@ async def set_ulang(user_id, lang: str):
             pickle.dump(preferences, file)
 
 
-# lang_check
-async def lc(u_id) -> bool:
+async def lang_check(u_id) -> bool:
     """
     controlla la lingua dell'utente
 
@@ -69,3 +68,6 @@ async def lc(u_id) -> bool:
         return True
     return False
     # raise f"errore nel get della lingua: {lang}\nu_id:{u_id}"
+
+
+lc = lang_check

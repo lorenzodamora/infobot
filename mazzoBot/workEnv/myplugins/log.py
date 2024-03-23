@@ -3,7 +3,7 @@ questo file gestisce i files di logs
 """
 from datetime import datetime
 from asyncio import Lock
-from myParameters import USERLOGS_FOLD
+from .myParameters import USERLOGS_FOLD
 
 lock_userLogs = {}
 

@@ -8,12 +8,12 @@ from os import getenv
 from chardet import detect
 from pyrogram import Client
 from pyrogram.types import Message as Msg
-from pyrogram.raw.base import Update
+# from pyrogram.raw.base import Update
 
-from lang import lc
-from log import complete_log as clog
-from myParameters import CHANNEL_ID, MY_ID
-from functions import *
+from .lang import lc
+from .log import complete_log as clog
+from .myParameters import CHANNEL_ID, MY_ID
+from .functions import *
 
 
 @Client.on_message(group=0)

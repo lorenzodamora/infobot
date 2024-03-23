@@ -3,7 +3,7 @@ questo file gestisce il file 'allUser.csv'
 """
 from asyncio import Lock
 from csv import DictWriter, DictReader
-from myParameters import ALLUSER_PATH, USERLOGS_FOLD
+from .myParameters import ALLUSER_PATH, USERLOGS_FOLD
 
 # Creare un lock globale per evitare concorrenza durante la scrittura del file
 lock_allUser = Lock()
