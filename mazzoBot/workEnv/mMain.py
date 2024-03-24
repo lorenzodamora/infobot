@@ -4,7 +4,6 @@ from os.path import exists
 from myClientParameters import t_id, t_hash, t_token, pushbullet_API_KEY as pushKey
 from myplugins.myParameters import MY_ID, CHANNEL_ID, HEADER_ALLUSER, ALLUSER_PATH
 from pushbullet import Pushbullet
-
 '''
 t_id = "id numerico"
 t_hash = "hash alfanumerico"

@@ -46,27 +46,27 @@ async def set_lang(msg: Msg):
     from ..lang import set_ulang
     name = msg.from_user.first_name
     u_id = msg.from_user.id
-    if msg.text == "Italiano":
+    is_ita = True
+    if msg.text.startswith("Ita"):
         await msg.reply_text(f"Grazie per avermi insegnato l'italiano, {name} !!")
         await set_ulang(user_id=u_id, lang="I")
 
     else:
         await msg.reply_text(f"Thank you for teaching me English, {name}!")
         await set_ulang(user_id=u_id, lang="E")
+        is_ita = False
 
-    await lang_start(msg)
+    await lang_start(msg, is_ita)
 
 
-async def lang_start(msg: Msg):
+async def lang_start(msg: Msg, lc: bool):
     """tab step 3"""
-    from ..lang import lc
-    c_id = msg.chat.id
     await msg.reply(
-        text="Iniziamo?! Siamo carichi? Io si!" if await lc(c_id) else "Shall we start?! Are we excited? I am!",
+        text="Iniziamo?! Siamo carichi? Io si!" if lc else "Shall we start?! Are we excited? I am!",
         reply_markup=Rkm(
             keyboard=[
                 [
-                    "Carichi per cosa?" if await lc(c_id) else "Excited for what?",  # A1
+                    "Carichi per cosa?" if lc else "Excited for what?",  # A1
                 ],
             ],
             one_time_keyboard=True,

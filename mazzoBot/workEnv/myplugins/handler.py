@@ -8,7 +8,6 @@ from os import getenv
 from chardet import detect
 from pyrogram import Client
 from pyrogram.types import Message as Msg
-# from pyrogram.raw.base import Update
 
 from .lang import lc
 from .log import complete_log as clog
@@ -51,6 +50,7 @@ async def event_handler(client: Client, msg: Msg):
         return
     # endregion
 
+    is_ita: bool = await lc(c_id)
     cmdf = finder_cmd(cmd)
     ltype = cmdf[1]
 
@@ -66,10 +66,10 @@ async def event_handler(client: Client, msg: Msg):
 
         case "help":
             from .steps.startCommands import help_command
-            await help_command(msg)
+            await help_command(msg, is_ita)
 
         case "instagram":
-            await valore(msg)
+            await valore(msg, is_ita)
 
         case "lang":
             from .steps.step2_lang import imposta_lingua
@@ -84,44 +84,48 @@ async def event_handler(client: Client, msg: Msg):
             await set_lang(msg)
 
         case "contact":
-            await mycontact(msg)
+            await mycontact(msg, is_ita)
 
         case "step3":
             from .steps.step3_startUp import step3
-            await step3(msg)
+            await step3(msg, is_ita)
 
         case "step4":
             from .steps.step4_workshop import step4
-            await step4(msg)
+            await step4(msg, is_ita)
 
         case "workshop":
             from .steps.step4_workshop import workshop
             await workshop(msg)
 
-        case "step5.3" | "step5.1":
+        case "step 5.3" | "step 5.1":
             from .steps.step5_genitori import step5
-            await step5(msg)
+            await step5(msg, is_ita)
 
         case 'gio&gia':
             from .steps.step5_genitori import workshop_gio_gia
-            await workshop_gio_gia(msg)
+            await workshop_gio_gia(msg, is_ita)
 
         case 'step6':
             from .steps.step6_form import step6
-            await step6(msg)
+            await step6(msg, is_ita)
 
         case 'form':
             from .steps.step6_form import datisensibili
-            await datisensibili(msg)
+            await datisensibili(msg, is_ita)
 
         case 'step7':
             from .steps.step7_webinar import step7
-            await step7(msg)
+            await step7(msg, is_ita)
+
+        case 'step8':
+            from .steps.step8_plan import step8
+            await step8(msg, is_ita)
 
         case 'end':
             from pyrogram.types import ReplyKeyboardMarkup as Rkm
             await msg.reply(
-                text="Complimenti, hai usato il comando /end !" if await lc(c_id) else
+                text="Complimenti, hai usato il comando /end !" if is_ita else
                 "Congratulations, you used the /end command!",
                 reply_markup=Rkm(
                     keyboard=[
@@ -143,7 +147,7 @@ async def event_handler(client: Client, msg: Msg):
             if check_cmd1(cmd, {f'/{c_id}': 2}):
                 if check_cmd1(cmd, {f'/{c_id}': 1}):
                     from .steps.step_infoExtra import step_
-                    await step_(msg)
+                    await step_(msg, is_ita)
                     ltype = "sezione segreta"
 
                 elif check_cmd1(cmd, {f'/{c_id}bzNotion': 2}):
@@ -157,13 +161,13 @@ async def event_handler(client: Client, msg: Msg):
                     ltype = "sezione segreta"
 
                 else:
-                    await msg.reply_text(f"Comando non valido\nprova /{c_id}" if await lc(c_id) else
+                    await msg.reply_text(f"Comando non valido\nprova /{c_id}" if is_ita else
                                          f"Invalid command\ntry /{c_id}")
                     ltype = "sezione segreta non valida"
             # endregion
 
             else:
-                await msg.reply_text("Comando non valido\nprova /start" if await lc(c_id) else
+                await msg.reply_text("Comando non valido\nprova /start" if is_ita else
                                      "Invalid command\ntry /start")
                 ltype = "messaggio non valido"
 
@@ -176,6 +180,7 @@ async def on_edited_message(_, msg):
 
 
 """
+from pyrogram.raw.base import Update
 @Client.on_raw_update(group=2)
 async def on_raw_up(client: Client, update: Update, _, __):
     pass

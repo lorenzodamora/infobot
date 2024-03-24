@@ -1,5 +1,4 @@
 from pyrogram.types import Message as Msg
-from .lang import lc
 from .myParameters import COMMANDS
 
 __all__ = (
@@ -111,21 +110,21 @@ def finder_cmd(txt: str) -> list[str]:
     for name in COMMANDS:
         if check_cmd(search_txt, name):
             return [name, logtype]
-    raise Exception("not find")
+    return ["not find", logtype]
 
 
-async def mycontact(msg: Msg):
+async def mycontact(msg: Msg, is_ita: bool):
     """ invia il mio contatto """
     tme = "https://t.me/Ill_Magnus"
     wa_url = ("https://wa.me/393286435255?text=Ciaoo%21%0AHo%20ricevuto%20questo%20contatto%20dal%20tuo%20bot%20su%20"
-              "Telegram.%0AMolto%20piacere%21%21" if await lc(msg.from_user.id) else
+              "Telegram.%0AMolto%20piacere%21%21" if is_ita else
               "https://wa.me/393286435255?text=Hii%21%0AI%20received%20this%20contact%20from%20your%20bot%20on%20"
               "Telegram.%0ANice%20to%20meet%20you%21%21")
     from pyrogram.enums import ParseMode as Pm
     from pyrogram.types import InlineKeyboardMarkup as Ikm, InlineKeyboardButton as Ikb
     await msg.reply(
         text=f"Per qualsiasi problema o domanda:\nEcco [il mio contatto telegram]({tme})\n"
-             "\nAltri contatti:" if await lc(msg.from_user.id) else
+             "\nAltri contatti:" if is_ita else
         f"For any issues or questions:\nHere's [my Telegram contact]({tme})\n"
         "\nOther contacts:",
         parse_mode=Pm.MARKDOWN,  # Usa la formattazione Markdown
@@ -138,16 +137,15 @@ async def mycontact(msg: Msg):
     )
 
 
-async def valore(msg: Msg):
+async def valore(msg: Msg, is_ita: bool):
     """Invia il testo sul valore e le inline per gli ig dei grossi leader"""
     from pyrogram.types import InlineKeyboardMarkup as Ikm, InlineKeyboardButton as Ikb
-    id_ = msg.from_user.id
     await msg.reply(
         text="Quanto vale tutto questo?\n\n"
              "Purtroppo anche solo rispondere a questa domanda, qui per messaggio, è estremamente riduttivo..\n"
              "Perché invece non me lo chiedete in pvt? @Ill_Magnus\n"
              "Oppure potete andare a vedere i social dei miei collaboratori più veterani (in ordine di importanza):"
-        if await lc(id_) else
+        if is_ita else
         "How much is all this worth?\n\n"
         "Unfortunately, just answering this question via text is extremely limiting..\n"
         "Why not ask me privately? @Ill_Magnus.\n"
@@ -177,7 +175,7 @@ async def valore(msg: Msg):
             [Ikb(text="MANUEL MAZZOLA",
                  url="https://www.instagram.com/manuel_mazzola_?utm_source=ig_web_button_share_sheet&"
                      "igsh=OGQ5ZDc2ODk2ZA==")],
-            [Ikb(text=f"LORENZO D'AMORA {'(io)' if await lc(id_) else '(me)'}",
+            [Ikb(text=f"LORENZO D'AMORA {'(io)' if is_ita else '(me)'}",
                  url="https://www.instagram.com/d.amora_lorenzo?"
                      "utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA==")],
         ]),

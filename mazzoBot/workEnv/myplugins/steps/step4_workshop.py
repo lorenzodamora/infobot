@@ -5,16 +5,15 @@ step 4
 """
 from pyrogram.types import (Message as Msg, ReplyKeyboardMarkup as Rkm,
                             InlineKeyboardMarkup as Ikm, InlineKeyboardButton as Ikb)
-from ..lang import lc
 
 
-async def step4(msg: Msg):
+async def step4(msg: Msg, lc: bool):
     await msg.reply(
-        text="Sei carico per il prossimo video?" if await lc(msg.chat.id) else "Are you ready for the next video?",
+        text="Sei carico per il prossimo video?" if lc else "Are you ready for the next video?",
         reply_markup=Rkm(
             keyboard=[
                 [
-                    "ASSOLUTAMENTE SI!" if await lc(msg.chat.id) else "ABSOLUTELY YES!",  # A1
+                    "ASSOLUTAMENTE SI!" if lc else "ABSOLUTELY YES!",  # A1
                 ],
             ],
             one_time_keyboard=True,

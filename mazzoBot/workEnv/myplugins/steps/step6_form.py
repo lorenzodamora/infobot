@@ -4,23 +4,21 @@ questo file contiene il form
 step 6
 """
 from pyrogram.types import Message as Msg, InlineKeyboardMarkup as Ikm, InlineKeyboardButton as Ikb
-from ..lang import lc
 
 
-async def step6(msg: Msg):
-    id_ = msg.chat.id
+async def step6(msg: Msg, lc: bool):
     await msg.reply(
         text="Abbiamo praticamente già finito, non è fantastico?!\n\n"
              "Compila questo questionario se vuoi la possibilità di essere scelto come nostro collaboratore!\n"
              "Se hai qualche dubbio prova a cliccare /form oppure contattami! @Ill_Magnus"
-        if await lc(id_)
+        if lc
         else "We've practically finished already, isn't it fantastic?!\n\n"
              "Fill out this questionnaire if you want the chance to be chosen as our collaborator!\n"
              "If you have any doubts, try clicking /form or contact me! @Ill_Magnus",
         reply_markup=Ikm([[
             Ikb(
                 text="FORM",
-                url="https://dub.sh/Leverage-Form-" + ("Ita" if await lc(id_) else "Eng")
+                url="https://dub.sh/Leverage-Form-" + ("Ita" if lc else "Eng")
             )
         ]]),
         disable_web_page_preview=True,  # Disabilita l'anteprima del sito web se presente
@@ -28,7 +26,7 @@ async def step6(msg: Msg):
 
 
 # /form
-async def datisensibili(msg: Msg):
+async def datisensibili(msg: Msg, lc: bool):
     """Invia una spiegazione sui dati sensibili richiesti nel form"""
     await msg.reply(
         text="Nel form sono richiesti alcuni dati sensibili, come il numero di telefono e altri..\n"
@@ -42,7 +40,7 @@ async def datisensibili(msg: Msg):
              " Per rendersi la vita come un film bisogna rischiare come in un film, perciò: hai paura di dare il "
              "numero di telefono? Meglio! significa che non sei stupido, avventato o poco sveglio.\n Ma solo chi si "
              "mette in gioco avrà i risultati che cerca nella vita. La scelta è tua."
-        if await lc(msg.from_user.id) else
+        if lc else
         "The form requires some sensitive data, such as your phone number and more.\n"
         "If you have concerns about this, I want to reassure you immediately:\n"
         "Your data is protected by the General Data Protection Regulation (GDPR) of the European Union.\n"

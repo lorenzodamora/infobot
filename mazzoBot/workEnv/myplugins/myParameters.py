@@ -31,7 +31,7 @@ COMMANDS = {
         'note': "send other languages msg",
     },
     'available langs': {
-        'alias': ['Italiano', 'English'],
+        'alias': ['Italiano', 'English', 'Ita', 'Eng'],
         'type': 1,
         'note': "set the bot language to selected",
     },
@@ -84,6 +84,12 @@ COMMANDS = {
         'alias': ['webinar', 'Step 7', '7', 'step7'],
         'type': 2,
         'note': "send webinar video",
+    },
+    'step8': {
+        'alias': ['be compensation', 'compensation', 'be plan', 'Piano Compensi',
+                  'Step 8', '8', 'step8'],
+        'type': 2,
+        'note': "send be compensation plan video",
     },
     'end': {
         'alias': ['end'],

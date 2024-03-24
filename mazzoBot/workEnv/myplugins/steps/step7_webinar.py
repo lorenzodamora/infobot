@@ -4,13 +4,12 @@ questo file contiene il primo step informativo: il webinar
 step 7
 """
 from pyrogram.types import Message as Msg, InlineKeyboardMarkup as Ikm, InlineKeyboardButton as Ikb
-from ..lang import lc
 
 
-async def step7(msg: Msg):
+async def step7(msg: Msg, lc: bool):
     """Manda il webinar di matteo bianco"""
     await msg.reply(
-        text="SE CERCHI ALTRE INFORMAZIONI:" if await lc(msg.chat.id)
+        text="SE CERCHI ALTRE INFORMAZIONI:" if lc
         else "IF YOU ARE LOOKING FOR ADDITIONAL INFORMATION:",
         reply_markup=Ikm([[
             Ikb(

@@ -38,9 +38,8 @@ async def start_command(client: Client, msg: Msg, my_id: int):
     _ = ct(adduser(msg.from_user))
 
 
-async def help_command(msg: Msg):
-    from ..lang import lc
+async def help_command(msg: Msg, lc: bool):
     await msg.reply_text(
-        "clicca /start per accendermi\nOppure contatta il mio creatore @Ill_Magnus" if await lc(msg.chat.id) else
+        "clicca /start per accendermi\nOppure contatta il mio creatore @Ill_Magnus" if lc else
         "Click /start to turn me on.\nOr contact my creator @Ill_Magnus."
     )
